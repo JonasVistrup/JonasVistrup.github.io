@@ -23,7 +23,7 @@ p {
  
  // schedule
   // entry format 
-  // {date, timeFrom , timeTo, isBusy, description,sub description } 
+  // {weekday, hourFrom, minuteFrom , hourTo, minuteTo, description} 
   //
   //
   //
@@ -40,7 +40,11 @@ p {
         "urllist: ["https://www.cbsnews.com/news/thanksgiving_parade_2022/"]	
     }
 ]}*/
-  
+let scedule = [{weekday: 2, hFrom: 14, mFrom: 0, hTo: 15, mTo: 0, desc: "I am in a meeting 🤔"},
+	       {weekday: 2, hFrom: 15, mFrom: 0, hTo: 17, mTo: 0, desc: "I am out swimming 🏊"},
+	       {weekday: 3, hFrom: 14, mFrom: 0, hTo: 15, mTo: 0, desc: "I am in a meeting at Luís' office 🙏"}
+	       ]
+	     
 function notIn(){
   document.getElementById("amin").innerHTML = "I am NOT in my office."
   document.getElementById("demo").innerHTML = ""
@@ -51,19 +55,30 @@ function In(){
 }
 function atLunch(){
   notIn()
-  document.getElementById("demo").innerHTML = "I am eating lunch and I'm back at latest 13:00."
+  document.getElementById("demo").innerHTML = "I am eating lunch and I'm back at latest 13:00 👨‍🍳"
 }
 function wentHome(){
   notIn()
-  document.getElementById("demo").innerHTML = "I went home but I'll be back tommorow at 10:00."
+  document.getElementById("demo").innerHTML = "I went home but I'll be back tommorow at 10:00 💤"
 }
 function weekend(){
   notIn()
-  document.getElementById("demo").innerHTML = "I'll be back monday at 10:00."
+  document.getElementById("demo").innerHTML = "I'll be back monday at 10:00 😎"
 }
 function stillAtHome(){
   notIn()
-  document.getElementById("demo").innerHTML = "I am sleeping, but I'll be in at 10:00."
+  document.getElementById("demo").innerHTML = "I am sleeping, but I'll be in at 10:00 😴"
+}
+	
+function inMeeting(now){
+  for( let i = 0; i<scedule.length; i++){
+    elem = scedule[i];
+    if(elem["weekday"] = now.getDay() && (elem["hFrom"] < now.getHour() || (elem["hFrom"]==now.getHour() && elem["mFrom"]<=now.getMinutes())) && (elem["hTo"] > now.getHour() || (elem["hTo"] > now.getHour() && elem["mTo"] > now.getMinutes()))){
+      notIn()
+      document.getElementById("demo").innerHTML = elem["desc"];
+      return true
+  }
+  return false
 }
   
 // Update the count down every 1 second
@@ -73,19 +88,14 @@ var x = setInterval(function() {
   var now = new Date();
   
   if(now.getDay() == 0 || now.getDay() == 6 || (now.getDay() == 5 && now.getHours() > 17)){
-    console.log("HELP")
     weekend()
   } else if(now.getHours()<10) {
-   console.log("HELP2")
    stillAtHome() 
   } else if(now.getHours()>17) {
-    console.log("HELP3")
     wentHome()
   } else if((now.getHours()==12 && 30<now.getMinutes()) || now.getHours()==12){
-    console.log("HELP4")
     atLunch()
-  } else {
-    console.log("HELP5")
+  } else if(!inMeeting(now)){
     In()
   }
 }, 1000);
