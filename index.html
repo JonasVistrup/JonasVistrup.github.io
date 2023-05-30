@@ -78,14 +78,19 @@ var x = setInterval(function() {
   var now = new Date().getTime();
   
   if(d.getDay() == 0 || d.getDay() == 6 || (d.getDay() == 5 && d.getHours() > 17)){
+    console.log("HELP")
     weekend()
   } else if(d.getHours()<10) {
+   console.log("HELP2")
    stillAtHome() 
   } else if(d.getHours()>17) {
+    console.log("HELP3")
     wentHome()
   } else if((d.getHours()==12 && 30<d.getMinutes()) || d.getHours()==12){
+    console.log("HELP4")
     atLunch()
   } else {
+    console.log("HELP5")
     In()
   }
 }, 1000);
