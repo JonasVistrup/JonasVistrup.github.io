@@ -41,11 +41,6 @@ p {
     }
 ]}*/
   
-  
-
-// Set the date we're counting down to
-var countDownDate = new Date("Apr 17, 2023 15:05:00").getTime();
-var bool = true
 function notIn(){
   document.getElementById("amin").innerHTML = "I am NOT in my office."
   document.getElementById("demo").innerHTML = ""
@@ -75,7 +70,7 @@ function stillAtHome(){
 var x = setInterval(function() {
 
   // Get today's date and time
-  var now = new Date().getTime();
+  var now = new Date();
   
   if(now.getDay() == 0 || now.getDay() == 6 || (now.getDay() == 5 && now.getHours() > 17)){
     console.log("HELP")
