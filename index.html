@@ -13,38 +13,80 @@ p {
 <body>
 
 <center>
-Time until HARP meeting:
+  <p id="amin"></p>
+  Normal office hours 10:00-17:00 Monday-Friday.
 </center>
 
 <p id="demo"></p>
 
 <script>
+ 
+ // schedule
+  // entry format 
+  // {date, timeFrom , timeTo, isBusy, description,sub description } 
+  //
+  //
+  //
+  /*let schedule = {[
+    {
+        "query": "Detroit Lions",
+        "traffic": "10K",
+        "urllist ["https://en.as.com/resultados/superbowl/detroit_lions/", "https://www.football-espana.net/superbowl/detroit_lions"]
+				
+    },
+    {
+        "query": "Thanksgiving parade",
+        "traffic": "50K",
+        "urllist: ["https://www.cbsnews.com/news/thanksgiving_parade_2022/"]	
+    }
+]}*/
+  
+  
+
 // Set the date we're counting down to
 var countDownDate = new Date("Apr 17, 2023 15:05:00").getTime();
-
+var bool = true
+function notIn(){
+  document.getElementById("amin").innerHTML = "I am NOT in my office."
+  document.getElementById("demo").innerHTML = ""
+}
+function In(){
+  document.getElementById("amin").innerHTML = "I am in my office."
+  document.getElementById("demo").innerHTML = ""
+}
+function atLunch(){
+  notIn()
+  document.getElementById("demo").innerHTML = "I am eating lunch and I'm back at latest 13:00."
+}
+function wentHome(){
+  notIn()
+  document.getElementById("demo").innerHTML = "I went home but I'll be back tommorow at 10:00."
+}
+function weekend(){
+  notIn()
+  document.getElementById("demo").innerHTML = "I'll be back monday at 10:00."
+}
+function stillAtHome(){
+  notIn()
+  document.getElementById("demo").innerHTML = "I am sleeping, but I'll be in at 10:00."
+}
+  
 // Update the count down every 1 second
 var x = setInterval(function() {
 
   // Get today's date and time
   var now = new Date().getTime();
-    
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
-    
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-  // Output the result in an element with id="demo"
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-    
-  // If the count down is over, write some text 
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
+  
+  if(d.getDay() == 0 || d.getDay() == 6 || (d.getDay() == 5 && d.getHours() > 17)){
+    weekend()
+  } else if(d.getHours()<10) {
+   stillAtHome() 
+  } else if(d.getHours()>17) {
+    wentHome()
+  } else if((d.getHours()==12 && 30<d.getMinutes()) || d.getHours()==12){
+    atLunch()
+  } else {
+    In()
   }
 }, 1000);
 </script>
