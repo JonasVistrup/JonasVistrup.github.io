@@ -65,7 +65,7 @@ function wentHome(){
 }
 function weekend(){
   notIn()
-  document.getElementById("demo").innerHTML = "I'll be back monday at 10:00 😎"
+  document.getElementById("demo").innerHTML = "I'll be back tuesday at 10:00 😎"
 }
 function stillAtHome(){
   notIn()
@@ -94,7 +94,7 @@ var x = setInterval(function() {
     weekend()
   } else if(now.getHours()<10) {
    stillAtHome() 
-  } else if(now.getHours()>17) {
+  } else if(now.getHours()>16) {
     wentHome()
   } else if((now.getHours()==12 && 30<now.getMinutes()) || now.getHours()==12){
     atLunch()
