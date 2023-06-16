@@ -75,9 +75,10 @@ function stillAtHome(){
 }
 	
 function inMeeting(now){
+  console.log(now.getDay() + " : " + now.getHours() + " : " + now.getMinutes())
   for( let i = 0; i<scedule.length; i++){
     elem = scedule[i];
-    if(elem["weekday"] == now.getDay() && (elem["hFrom"] < now.getHours() || (elem["hFrom"]==now.getHours() && elem["mFrom"]<=now.getMinutes())) && (elem["hTo"] > now.getHours() || (elem["hTo"] > now.getHours() && elem["mTo"] > now.getMinutes()))){
+    if(elem["weekday"] == now.getDay() && (elem["hFrom"] < now.getHours() || (elem["hFrom"]==now.getHours() && elem["mFrom"]<=now.getMinutes())) && (elem["hTo"] > now.getHours() || (elem["hTo"] = now.getHours() && elem["mTo"] > now.getMinutes()))){
       notIn()
       document.getElementById("demo").innerHTML = elem["desc"];
       return true
