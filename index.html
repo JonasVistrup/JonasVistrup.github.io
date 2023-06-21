@@ -95,7 +95,7 @@ var x = setInterval(function() {
   // Get today's date and time
   var now = new Date();
   if(inMeeting(now)){
-  } else if(now.getDay() == 0 || now.getDay() == 6 || (now.getDay() == 5 && now.getHours() > 16)){
+  } else if(now.getDay() == 0 || now.getDay() == 6 || (now.getDay() == 5 && now.getHours() > 17)){
     weekend()
   } else if(now.getHours()<10) {
    stillAtHome() 
