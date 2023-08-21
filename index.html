@@ -16,7 +16,7 @@ p {
 <center>
   <p id="amin"></p>
   <h1 id="demo"></h1>
-  Normal (attempted) office hours 10:00-17:00 Monday-Friday. Email: vistrup@imada.sdu.dk.
+  Normal (attempted) office hours 10:00-16:00 Monday-Friday. Email: vistrup@imada.sdu.dk.
 </center>
 
 
@@ -43,10 +43,10 @@ p {
     }
 ]}*/
 let scedule = [//{"weekday": 2, "hFrom": 9, "mFrom": 0, "hTo": 17, "mTo": 0, "desc": "I am working from home today 🏠 You can still email me."},
-	       //{"weekday": 2, "hFrom": 14, "mFrom": 0, "hTo": 15, "mTo": 0, "desc": "I am in a meeting 🤔"},
-	       //{"weekday": 2, "hFrom": 15, "mFrom": 0, "hTo": 17, "mTo": 0, "desc": "I am out swimming 🏊"},
+	       {"weekday": 2, "hFrom": 14, "mFrom": 15, "hTo": 15, "mTo": 0, "desc": "I am in a meeting 🤔"},
+	       {"weekday": 2, "hFrom": 15, "mFrom": 0, "hTo": 17, "mTo": 0, "desc": "I am out swimming 🏊"},
 	       //{"weekday": 1, "hFrom": 6, "mFrom": 0, "hTo": 17, "mTo": 0, "desc": "I am out today, but I'll be back tomorrow at 10:00"},
-	       {"weekday": 1, "hFrom": 6, "mFrom": 0, "hTo": 17, "mTo": 0, "desc": "I am taking the day off to clean the house 🏠"}
+	       //{"weekday": 1, "hFrom": 6, "mFrom": 0, "hTo": 17, "mTo": 0, "desc": "I am taking the day off to clean the house 🏠"}
 	       //{weekday: 3, hFrom: 14, mFrom: 0, hTo: 15, mTo: 0, desc: "I am in a meeting at Luís' office 🙏"}
 	       ]
 	     
@@ -95,11 +95,11 @@ var x = setInterval(function() {
   // Get today's date and time
   var now = new Date();
   if(inMeeting(now)){
-  } else if(now.getDay() == 0 || now.getDay() == 6 || (now.getDay() == 5 && now.getHours() > 17)){
+  } else if(now.getDay() == 0 || now.getDay() == 6 || (now.getDay() == 5 && now.getHours() > 16)){
     weekend()
   } else if(now.getHours()<10) {
    stillAtHome() 
-  } else if(now.getHours()>17) {
+  } else if(now.getHours()>16) {
     wentHome()
   } else if((now.getHours()==11 && 30<now.getMinutes()) || now.getHours()==12){
     atLunch()
